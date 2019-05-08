@@ -15,7 +15,6 @@ namespace SimpleClient
 {
     class Client
     {
-        private string tempIp = "35.204.18.58";
 
         private Socket clientSocket;
         private static EndPoint remoEndPoint;
@@ -45,7 +44,6 @@ namespace SimpleClient
                 string msgString = JsonConvert.SerializeObject(msg);
                 streamWriter.WriteLine(msgString);
                 streamWriter.Flush();
-
                 do
                 {
                     string incoming = streamReader.ReadLine();
@@ -61,8 +59,7 @@ namespace SimpleClient
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.InnerException);
-                throw;
+                Debug.WriteLine(e.InnerException);
             }
             
         }
@@ -90,7 +87,7 @@ namespace SimpleClient
                     switch (m.MessageType)
                     {
                         case Message.Type.User:
-                            messages.Enqueue(string.Format("From: {0} \n {1}", m.From, m.Content));
+                            messages.Enqueue(string.Format("From: {0} To:{1} - {2}", m.From, m.To, m.Content));
                             break;
                     }
                 }

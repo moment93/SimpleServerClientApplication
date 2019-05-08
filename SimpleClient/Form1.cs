@@ -67,6 +67,7 @@ namespace SimpleClient
             m.From = Int32.Parse(lblId.Text);
             m.To = Int32.Parse(txtRecipementId.Text);
             m.Content = txtBoxMsg.Text;
+            client.messages.Enqueue(string.Format("From: {0} To: {1} - {2}", m.From, m.To, m.Content));
             client.Send(m);
         }
 
