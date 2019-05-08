@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -75,20 +76,29 @@ namespace SimpleClient
 
         public void ReadIncoming()
         {
+            //Incoming decoded string
             string incoming;
             
             while (clientSocket.Connected)
             {
-                incoming = streamReader.ReadLine();
-                Message m = new Message();
-                m = JsonConvert.DeserializeObject<Message>(incoming);
-
-                switch (m.MessageType)
+                try
                 {
-                    case Message.Type.User:
-                        messages.Enqueue(string.Format("From: {0} \n {1}", m.From, m.Content));
-                        break;
+                    incoming = streamReader.ReadLine();
+                    Message m = new Message();
+                    m = JsonConvert.DeserializeObject<Message>(incoming);
+
+                    switch (m.MessageType)
+                    {
+                        case Message.Type.User:
+                            messages.Enqueue(string.Format("From: {0} \n {1}", m.From, m.Content));
+                            break;
+                    }
                 }
+                catch (Exception e)
+                {
+                    Debug.WriteLine(e);
+                }
+
             }
         }
 

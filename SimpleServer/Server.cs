@@ -19,6 +19,7 @@ namespace SimpleServer
 
         public Server(int port, int backlog)
         {
+            //Set up server main Socket and connection list.
             localEndPoint = new IPEndPoint(IPAddress.Any, port);
             serverSocket = new Socket(localEndPoint.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
             serverSocket.Bind(localEndPoint);
@@ -32,10 +33,21 @@ namespace SimpleServer
 
             while (isRunning)
             {
+                //Accept incoming connection, generate random indentifier and send to client.
                 Socket clientSocket = serverSocket.Accept();
-                int identifier = Int32.Parse(GenerateRandomIdentifier());
+                int identifier = Int32.Parse(GenerateRandomIdentifier()); 
                 ClientConnection clientConnection = new ClientConnection(clientSocket, identifier, ref connectionList);
-                connectionList.Add(identifier, clientConnection);
+                //Check if identifier already exists.
+                if (connectionList.ContainsKey(identifier))
+                {
+                    //generate new identifier
+                    identifier = Int32.Parse(GenerateRandomIdentifier());                  
+                }
+                else
+                {
+                    connectionList.Add(identifier, clientConnection);
+                }
+                
             }
         }
 
