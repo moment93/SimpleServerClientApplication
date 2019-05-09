@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("");
             this.btnConnect = new System.Windows.Forms.Button();
-            this.lstBoxChat = new System.Windows.Forms.ListBox();
             this.txtBoxMsg = new System.Windows.Forms.TextBox();
             this.btnSend = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -42,6 +42,7 @@
             this.txtRecipementId = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.listViewChatWindow = new System.Windows.Forms.ListView();
             this.SuspendLayout();
             // 
             // btnConnect
@@ -53,15 +54,6 @@
             this.btnConnect.Text = "Connect";
             this.btnConnect.UseVisualStyleBackColor = true;
             this.btnConnect.Click += new System.EventHandler(this.btnConnect_Click);
-            // 
-            // lstBoxChat
-            // 
-            this.lstBoxChat.FormattingEnabled = true;
-            this.lstBoxChat.Location = new System.Drawing.Point(12, 100);
-            this.lstBoxChat.Name = "lstBoxChat";
-            this.lstBoxChat.Size = new System.Drawing.Size(255, 264);
-            this.lstBoxChat.TabIndex = 1;
-            this.lstBoxChat.SelectedIndexChanged += new System.EventHandler(this.lstBoxChat_SelectedIndexChanged);
             // 
             // txtBoxMsg
             // 
@@ -154,11 +146,26 @@
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // listViewChatWindow
+            // 
+            this.listViewChatWindow.Alignment = System.Windows.Forms.ListViewAlignment.Left;
+            this.listViewChatWindow.GridLines = true;
+            this.listViewChatWindow.ImeMode = System.Windows.Forms.ImeMode.Off;
+            this.listViewChatWindow.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
+            listViewItem1});
+            this.listViewChatWindow.Location = new System.Drawing.Point(9, 100);
+            this.listViewChatWindow.Name = "listViewChatWindow";
+            this.listViewChatWindow.Size = new System.Drawing.Size(258, 264);
+            this.listViewChatWindow.TabIndex = 12;
+            this.listViewChatWindow.UseCompatibleStateImageBehavior = false;
+            this.listViewChatWindow.View = System.Windows.Forms.View.List;
+            // 
             // SimpleClient
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(279, 450);
+            this.Controls.Add(this.listViewChatWindow);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.txtRecipementId);
             this.Controls.Add(this.label3);
@@ -169,7 +176,6 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnSend);
             this.Controls.Add(this.txtBoxMsg);
-            this.Controls.Add(this.lstBoxChat);
             this.Controls.Add(this.btnConnect);
             this.Name = "SimpleClient";
             this.Text = "SimpleClientv1";
@@ -181,7 +187,6 @@
         #endregion
 
         private System.Windows.Forms.Button btnConnect;
-        private System.Windows.Forms.ListBox lstBoxChat;
         private System.Windows.Forms.TextBox txtBoxMsg;
         private System.Windows.Forms.Button btnSend;
         private System.Windows.Forms.Label label1;
@@ -193,6 +198,7 @@
         private System.Windows.Forms.TextBox txtRecipementId;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.ListView listViewChatWindow;
     }
 }
 
